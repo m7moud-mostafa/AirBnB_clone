@@ -4,6 +4,7 @@ Base Model module
 """
 import uuid
 import datetime
+from models import storage
 
 
 class BaseModel:
@@ -24,6 +25,8 @@ class BaseModel:
                 elif key == "created_at" or key == "updated_at":
                     value = datetime.datetime.fromisoformat(value)
                 setattr(self, key, value)
+        else:
+            storage.new(self)
 
     def __str__(self):
         """Returns the string form of the object"""
@@ -33,10 +36,11 @@ class BaseModel:
     def save(self):
         """Updates the update_at attribute"""
         self.updated_at = datetime.datetime.now()
+        storage.save()
 
     def to_dict(self):
         """Returns a dictionary containing all keys/values of __dict__"""
-        dict_format = self.__dict__
+        dict_format = self.__dict__.copy()
         dict_format["__class__"] = self.__class__.__name__
         dict_format["created_at"] = dict_format["created_at"].isoformat()
         dict_format["updated_at"] = dict_format["updated_at"].isoformat()
