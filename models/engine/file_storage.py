@@ -4,7 +4,8 @@ import json
 from importlib import import_module
 
 models_dict = {
-    "BaseModel": "base_model"
+    "BaseModel": "base_model",
+    "User": "user"
     }
 
 
