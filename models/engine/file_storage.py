@@ -5,7 +5,12 @@ from importlib import import_module
 
 models_dict = {
     "BaseModel": "base_model",
-    "User": "user"
+    "User": "user",
+    "Amenity": "amenity",
+    "City": "city",
+    "Place": "place",
+    "Review": "review",
+    "State": "state"
     }
 
 
